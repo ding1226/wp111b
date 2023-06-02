@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dino Jump Game</title>
+  <title>猜數字遊戲</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="game-container">
-    <div id="dino" class="dino"></div>
-    <div id="obstacle" class="obstacle"></div>
-  </div>
+  <h1>猜數字遊戲</h1>
+  <p>請輸入一個範圍內的數字（1-100）：</p>
+  <input type="number" id="guess" min="1" max="100">
+  <button id="check">檢查</button>
+  <p id="message"></p>
 
   <script src="script.js"></script>
 </body>
