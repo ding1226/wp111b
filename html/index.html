@@ -1,112 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>連連看</title>
+  <title>猜數字遊戲</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>連連看</h1>
-  <div id="game-board"></div>
+  <h1>猜數字遊戲</h1>
+  <p>請輸入一個範圍內的數字（1-100）：</p>
+  <input type="number" id="guess" min="1" max="100">
+  <button id="check">檢查</button>
+  <p id="message"></p>
 
   <script src="script.js"></script>
 </body>
 </html>
-body {
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  #game-board {
-    margin: 20px auto;
-    width: 500px;
-    height: 500px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 10px;
-    background-color: #fff;
-  }
-  
-  .card {
-    border: 1px solid #ccc;
-    background-color: #f8f8f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .card.selected {
-    background-color: #ffcc00;
-  }
-  
-  .card.matched {
-    visibility: hidden;
-  }
-  var gameBoard = document.getElementById('game-board');
-var cards = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E'];
-var selectedCards = [];
-var matchedCards = [];
-
-// Shuffle the cards
-shuffle(cards);
-
-// Create game board
-for (var i = 0; i < cards.length; i++) {
-  var card = document.createElement('div');
-  card.className = 'card';
-  card.textContent = cards[i];
-  card.addEventListener('click', flipCard);
-  gameBoard.appendChild(card);
-}
-
-function flipCard() {
-  var card = this;
-  if (selectedCards.length < 2 && !card.classList.contains('selected') && !card.classList.contains('matched')) {
-    card.classList.add('selected');
-    selectedCards.push(card);
-    if (selectedCards.length === 2) {
-      setTimeout(checkMatch, 1000);
-    }
-  }
-}
-
-function checkMatch() {
-  var card1 = selectedCards[0];
-  var card2 = selectedCards[1];
-  if (card1.textContent === card2.textContent) {
-    card1.classList.add('matched');
-    card2.classList.add('matched');
-    matchedCards.push(card1, card2);
-    if (matchedCards.length === cards.length) {
-      setTimeout(showMessage, 500);
-    }
-  } else {
-    card1.classList.remove('selected');
-    card2.classList.remove('selected');
-  }
-  selectedCards = [];
-}
-
-function showMessage() {
-  alert('Congratulations! You won the game!');
-}
-
-// Shuffle an array using Fisher-Yates algorithm
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
-}
