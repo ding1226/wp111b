@@ -20,7 +20,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-*.lcov
+*.lcovgit push origin maingit push origin main
 
 # nyc test coverage
 .nyc_output
@@ -101,4 +101,4 @@ dist
 .dynamodb/
 
 # TernJS port file
-.tern-port
+.tern-pgit push origin mainort
